@@ -101,24 +101,24 @@ function App() {
         {/* Content */}
         {activeTab === 'components' && (
           <div>
-            <Card title="Buttons">
+            <Card title="Buttons" cssVars={cssVars}>
               <div style={{ display: 'flex', gap: cssVars['spacing-md'], flexWrap: 'wrap', marginBottom: cssVars['spacing-md'] }}>
-                <Button size="small">Small Button</Button>
-                <Button size="medium">Medium Button</Button>
-                <Button size="large">Large Button</Button>
+                <Button size="small" cssVars={cssVars}>Small Button</Button>
+                <Button size="medium" cssVars={cssVars}>Medium Button</Button>
+                <Button size="large" cssVars={cssVars}>Large Button</Button>
               </div>
               <div style={{ display: 'flex', gap: cssVars['spacing-md'], flexWrap: 'wrap' }}>
-                <Button variant="primary">Primary</Button>
-                <Button variant="secondary">Secondary</Button>
+                <Button variant="primary" cssVars={cssVars}>Primary</Button>
+                <Button variant="secondary" cssVars={cssVars}>Secondary</Button>
               </div>
             </Card>
 
-            <Card title="Cards">
+            <Card title="Cards" cssVars={cssVars}>
               <p>This is a card component using design tokens for padding, border radius, and background color.</p>
-              <Button>Card Action</Button>
+              <Button cssVars={cssVars}>Card Action</Button>
             </Card>
 
-            <Card title="Form Example">
+            <Card title="Form Example" cssVars={cssVars}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: cssVars['spacing-sm'] }}>
                 <input
                   type="text"
@@ -145,7 +145,7 @@ function App() {
                     color: cssVars['fg-default'],
                   }}
                 />
-                <Button>Submit</Button>
+                <Button cssVars={cssVars}>Submit</Button>
               </div>
             </Card>
           </div>
