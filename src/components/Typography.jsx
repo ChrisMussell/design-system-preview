@@ -1,7 +1,6 @@
 import React from 'react';
-import { cssVars } from '../tokens/transform';
 
-export const Typography = () => {
+export const Typography = ({ cssVars }) => {
   return (
     <div style={{ color: cssVars['fg-default'] }}>
       <h1
