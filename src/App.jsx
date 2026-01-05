@@ -4,15 +4,17 @@ import { Card } from './components/Card';
 import { Typography } from './components/Typography';
 import { ColorPalette } from './components/ColorPalette';
 import { Spacing } from './components/Spacing';
-import { cssVars, generateCSSVariables } from './tokens/transform';
+import { generateCSSVariables } from './tokens/transform';
 
 function App() {
   const [theme, setTheme] = useState('light');
   const [activeTab, setActiveTab] = useState('components');
+  const [cssVars, setCssVars] = useState(() => generateCSSVariables('light'));
   
   // Update CSS variables when theme changes
   React.useEffect(() => {
     const vars = generateCSSVariables(theme);
+    setCssVars(vars);
     const root = document.documentElement;
     Object.entries(vars).forEach(([key, value]) => {
       root.style.setProperty(`--${key}`, value);
@@ -150,8 +152,8 @@ function App() {
         )}
 
         {activeTab === 'colors' && <ColorPalette />}
-        {activeTab === 'typography' && <Typography />}
-        {activeTab === 'spacing' && <Spacing />}
+        {activeTab === 'typography' && <Typography cssVars={cssVars} />}
+        {activeTab === 'spacing' && <Spacing cssVars={cssVars} />}
       </div>
     </div>
   );
