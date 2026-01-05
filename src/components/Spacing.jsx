@@ -1,7 +1,6 @@
 import React from 'react';
-import { cssVars } from '../tokens/transform';
 
-export const Spacing = () => {
+export const Spacing = ({ cssVars }) => {
   const spacingSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
   
   return (
