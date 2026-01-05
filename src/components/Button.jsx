@@ -1,37 +1,43 @@
 import React from 'react';
-import { cssVars } from '../tokens/transform';
 
 export const Button = ({ 
   children, 
   variant = 'primary', 
   size = 'medium',
-  onClick 
+  onClick,
+  cssVars
 }) => {
+  // If cssVars not passed, try to get from CSS variables
+  const getVar = (key) => {
+    if (cssVars && cssVars[key]) return cssVars[key];
+    return getComputedStyle(document.documentElement).getPropertyValue(`--${key}`).trim();
+  };
+
   const styles = {
     primary: {
-      backgroundColor: cssVars['button-primary-background'],
-      color: cssVars['button-primary-text'],
+      backgroundColor: getVar('button-primary-background'),
+      color: getVar('button-primary-text'),
       border: 'none',
     },
     secondary: {
       backgroundColor: 'transparent',
-      color: cssVars['accent-default'],
-      border: `2px solid ${cssVars['accent-default']}`,
+      color: getVar('accent-default'),
+      border: `2px solid ${getVar('accent-default')}`,
     },
   };
 
   const sizes = {
     small: {
-      padding: `${cssVars['spacing-xs']} ${cssVars['spacing-sm']}`,
-      fontSize: cssVars['fontSizes-sm'],
+      padding: `${getVar('spacing-xs')} ${getVar('spacing-sm')}`,
+      fontSize: getVar('fontSizes-sm'),
     },
     medium: {
-      padding: `${cssVars['spacing-sm']} ${cssVars['spacing-md']}`,
-      fontSize: cssVars['fontSizes-body'],
+      padding: `${getVar('spacing-sm')} ${getVar('spacing-md')}`,
+      fontSize: getVar('fontSizes-body'),
     },
     large: {
-      padding: `${cssVars['spacing-md']} ${cssVars['spacing-lg']}`,
-      fontSize: cssVars['fontSizes-h6'],
+      padding: `${getVar('spacing-md')} ${getVar('spacing-lg')}`,
+      fontSize: getVar('fontSizes-h6'),
     },
   };
 
@@ -41,9 +47,9 @@ export const Button = ({
       style={{
         ...styles[variant],
         ...sizes[size],
-        borderRadius: cssVars['button-borderRadius'],
+        borderRadius: getVar('button-borderRadius'),
         cursor: 'pointer',
-        fontFamily: cssVars['fontFamilies-heading'],
+        fontFamily: getVar('fontFamilies-heading'),
         fontWeight: '600',
         transition: 'all 0.2s ease',
       }}
